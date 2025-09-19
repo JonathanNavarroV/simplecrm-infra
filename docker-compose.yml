@@ -1,0 +1,26 @@
+services:
+  postgres-auth:
+    image: postgres:16
+    container_name: simplecrm_postgres_auth
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER_AUTH}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_AUTH}
+      POSTGRES_DB: ${AUTH_DB}
+    ports:
+      - "5001:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
+
+  postgres-crm:
+    image: postgres:16
+    container_name: simplecrm_postgres_crm
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER_CRM}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_CRM}
+      POSTGRES_DB: ${CRM_DB}
+    ports:
+      - "5002:5432"
+    tmpfs:
+      - /var/lib/postgresql/data
