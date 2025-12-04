@@ -1,0 +1,2 @@
+.env                 # Archivo de entorno local (no versionar): contiene contraseñas y credenciales de desarrollo
+.env.prod            # Archivo de entorno para producción (no mantener en el repositorio)
