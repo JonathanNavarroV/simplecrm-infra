@@ -2,3 +2,11 @@
 # Archivo de entorno local (no versionar): contiene contraseñas y credenciales de desarrollo
 .env.prod
 # Archivo de entorno para producción (no mantener en el repositorio)
+
+## Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/copilot-instructions.md
