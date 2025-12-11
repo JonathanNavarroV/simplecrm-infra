@@ -1,5 +1,3 @@
-# Instrucciones para GitHub Copilot en este proyecto frontend
-
 ## Reutilizar código existente antes de crear algo nuevo
 
 Siempre que propongas una solución, primero debes buscar y reutilizar código que ya exista en este proyecto.
