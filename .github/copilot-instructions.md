@@ -84,3 +84,32 @@ Ejemplos válidos:
 * Actualizar validaciones del formulario de cliente
 * Agregar componente para edición de contactos
 * Corregir cálculo de totales en el modal de recursos
+
+## Uso preferente de Angular Signals (estado de UI)
+
+Al generar o completar código en Angular:
+
+- Prioriza Signals (signal, computed, effect) para:
+   - Estado local de UI (filtros, selección, paginación, flags de carga, wizard steps, etc.).
+   - Valores derivados (totales, validaciones derivadas, habilitar/deshabilitar botones, etc.).
+   - Sincronización simple de estado entre template y componente, evitando subscribe() manual.
+
+- Evita por defecto:
+   - BehaviorSubject/Subject como “estado” de componentes.
+   - subscribe() dentro del componente para mantener estado (salvo casos justificados).
+   - Getters “pesados” usados en template (preferir computed).
+
+- Usa RxJS cuando sea realmente la mejor opción:
+   - Flujos asíncronos/eventos continuos: HTTP streams complejos, WebSockets, retries, cancelación, combineLatest, debounceTime, etc.
+   - Integración con librerías que exponen Observable.
+
+- Interoperabilidad recomendada:
+   - Convertir Observable → Signal para consumo en UI:
+      - toSignal(observable$) y consumirlo como miSignal().
+   - Convertir Signal → Observable solo cuando una API lo requiera:
+   toObservable(miSignal).
+
+- Regla de oro:
+   - Estado de UI = Signals
+   - Flujos asíncronos = RxJS
+   - Se pueden combinar, pero evita duplicar la fuente de verdad (no mantener el mismo estado en un signal y en un Subject a la vez).
